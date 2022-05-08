@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Forms;
+using VRCW_Opener.Properties;
 
 
 namespace VRCW_Opener
@@ -9,21 +11,19 @@ namespace VRCW_Opener
         /// エントリポイント
         /// </summary>
         /// <param name="args">コマンドラインオプション</param>
+        [STAThread]
         public static int Main(string[] args)
         {
-            try
-            {
-                _ = new Opener(args);
-            }
+            try { _ = new CommandLine(args); }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                Console.ReadKey();
-                return 1;
-            }
+                _ = MessageBox.Show(e.ToString(), Resources.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
 #if DEBUG
-            Console.ReadKey();
+                throw;
+#else
+                return 1;
 #endif
+            }
             return 0;
         }
     }

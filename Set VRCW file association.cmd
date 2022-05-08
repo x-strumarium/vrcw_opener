@@ -1,0 +1,1 @@
+@START .\VRCW_Opener.exe --VRCW_Opener-Associate

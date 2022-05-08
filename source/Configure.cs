@@ -5,7 +5,6 @@ using System.Reflection;
 
 namespace VRCW_Opener
 {
-    [JsonObject("VRCW Opener Data")]
     public class Configure
     {
         private static readonly string _Location = Assembly.GetExecutingAssembly().Location;
@@ -39,6 +38,10 @@ namespace VRCW_Opener
                 return _data != null && !string.IsNullOrWhiteSpace(_data.VrcExeFilePath);
             }
             catch (FileNotFoundException)
+            {
+                return false;
+            }
+            catch (JsonReaderException)
             {
                 return false;
             }
